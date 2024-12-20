@@ -123,10 +123,3 @@ class BusinessRulesParser(MapFunction):
         except Exception as e:
             print(f"Error in _check_conditions: {str(e)}")
             return False
-
-
-def split_and_process_data(value):
-
-    parts = value.split(",")
-
-    return parts

@@ -3,13 +3,7 @@ from pyflink.common.typeinfo import Types
 from pyflink.datastream.data_stream import WatermarkStrategy
 from config.flink.flink_config import KAFKA_FLINK_Connector
 from config.flink.flink_source import Source, Sink
-from config.flink.flinkmapfunction import BusinessRulesParser
-from pyflink.datastream.connectors.kafka import (
-    KafkaSink,
-    KafkaRecordSerializationSchema,
-    DeliveryGuarantee,
-)
-from pyflink.common.serialization import SimpleStringSchema
+from config.flink.Map_function import BusinessRulesParser
 
 
 def kafka_job(source_topic):
@@ -35,6 +29,7 @@ def kafka_job(source_topic):
         output_type=Types.LIST(Types.TUPLE([Types.STRING(), Types.STRING()])),
         # output_type=Types.STRING(),
     )
+
     parsed_stream = parsed_stream.map(
         lambda value: f"{value[0][0]}, {value[0][1]}", output_type=Types.STRING()
     )
@@ -42,20 +37,7 @@ def kafka_job(source_topic):
     parsed_stream.print()
 
     # Add a dynamic Kafka sink
-
     parsed_stream.sink_to(Sink())
-
-    # Print parsed results (for debugging)
-
-    # Set up the Kafka Sink
-    # sink = Sink(topic_name=destination_topic)
-
-    # parsed_stream = parsed_stream.map(lambda x: x[0][1], output_type=Types.STRING())
-
-    # parsed_stream.print()
-
-    # Sink the parsed stream
-    # parsed_stream.sink_to(sink)
 
     # # Execute the job
     env.execute(f"Kafka Job - Reading from {source_topic}")
@@ -63,5 +45,5 @@ def kafka_job(source_topic):
 
 if __name__ == "__main__":
     source = "t1"
-    destination = "t5"
+    # destination = "t5"
     kafka_job(source_topic=source)

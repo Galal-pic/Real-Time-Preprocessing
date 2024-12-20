@@ -6,7 +6,6 @@ from pyflink.datastream.connectors.kafka import (
 from pyflink.common.serialization import SimpleStringSchema
 from config.flink.flink_config import Kafka_SERVER
 from pyflink.datastream.connectors.kafka import DeliveryGuarantee
-from pyflink.datastream.functions import SinkFunction
 
 
 def Source(topic_name):
@@ -24,12 +23,10 @@ def Source(topic_name):
 def Sink():
     kafka_sink = (
         KafkaSink.builder()
-        .set_bootstrap_servers("localhost:9092")
+        .set_bootstrap_servers(Kafka_SERVER)
         .set_record_serializer(
             KafkaRecordSerializationSchema.builder()
-            .set_topic_selector(
-                lambda value: value.split(",")[0].strip()
-            )  # Dynamically selects the topic from the record
+            .set_topic_selector(lambda value: value.split(",")[0].strip())
             .set_value_serialization_schema(SimpleStringSchema())
             .build()
         )
