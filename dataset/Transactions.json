@@ -1,0 +1,402 @@
+[
+    {
+        "transactionType": "Dining",
+        "transactionAmount": 2711,
+        "customerProfile": {
+            "segment": "Silver",
+            "hasInstallmentCard": true
+        }
+    },
+    {
+        "transactionType": "Dining",
+        "transactionAmount": 958,
+        "customerProfile": {
+            "segment": "Diamond",
+            "hasInstallmentCard": true
+        }
+    },
+    {
+        "transactionType": "Luxury",
+        "transactionAmount": 4028,
+        "customerProfile": {
+            "segment": "Silver",
+            "hasInstallmentCard": true
+        }
+    },
+    {
+        "transactionType": "Luxury",
+        "transactionAmount": 558,
+        "customerProfile": {
+            "segment": "Student",
+            "hasInstallmentCard": false
+        }
+    },
+    {
+        "transactionType": "Dining",
+        "transactionAmount": 677,
+        "customerProfile": {
+            "segment": "Diamond",
+            "hasInstallmentCard": true
+        }
+    },
+    {
+        "transactionType": "Retail",
+        "transactionAmount": 1695,
+        "customerProfile": {
+            "segment": "Diamond",
+            "hasInstallmentCard": true
+        }
+    },
+    {
+        "transactionType": "None",
+        "transactionAmount": 3259,
+        "customerProfile": {
+            "segment": "Silver",
+            "hasInstallmentCard": true
+        }
+    },
+    {
+        "transactionType": "Luxury",
+        "transactionAmount": 2600,
+        "customerProfile": {
+            "segment": "Silver",
+            "hasInstallmentCard": false
+        }
+    },
+    {
+        "transactionType": "Dining",
+        "transactionAmount": 1642,
+        "customerProfile": {
+            "segment": "Gold",
+            "hasInstallmentCard": true
+        }
+    },
+    {
+        "transactionType": "Retail",
+        "transactionAmount": 3602,
+        "customerProfile": {
+            "segment": "Silver",
+            "hasInstallmentCard": false
+        }
+    },
+    {
+        "transactionType": "Luxury",
+        "transactionAmount": 3324,
+        "customerProfile": {
+            "segment": "Silver",
+            "hasInstallmentCard": false
+        }
+    },
+    {
+        "transactionType": "Retail",
+        "transactionAmount": 625,
+        "customerProfile": {
+            "segment": "Gold",
+            "hasInstallmentCard": true
+        }
+    },
+    {
+        "transactionType": "None",
+        "transactionAmount": 3278,
+        "customerProfile": {
+            "segment": "Silver",
+            "hasInstallmentCard": false
+        }
+    },
+    {
+        "transactionType": "Dining",
+        "transactionAmount": 2087,
+        "customerProfile": {
+            "segment": "Silver",
+            "hasInstallmentCard": true
+        }
+    },
+    {
+        "transactionType": "Luxury",
+        "transactionAmount": 2160,
+        "customerProfile": {
+            "segment": "Gold",
+            "hasInstallmentCard": false
+        }
+    },
+    {
+        "transactionType": "Luxury",
+        "transactionAmount": 2995,
+        "customerProfile": {
+            "segment": "Diamond",
+            "hasInstallmentCard": true
+        }
+    },
+    {
+        "transactionType": "Retail",
+        "transactionAmount": 4339,
+        "customerProfile": {
+            "segment": "Silver",
+            "hasInstallmentCard": false
+        }
+    },
+    {
+        "transactionType": "Luxury",
+        "transactionAmount": 3585,
+        "customerProfile": {
+            "segment": "Gold",
+            "hasInstallmentCard": false
+        }
+    },
+    {
+        "transactionType": "Retail",
+        "transactionAmount": 1225,
+        "customerProfile": {
+            "segment": "Gold",
+            "hasInstallmentCard": true
+        }
+    },
+    {
+        "transactionType": "None",
+        "transactionAmount": 2992,
+        "customerProfile": {
+            "segment": "Gold",
+            "hasInstallmentCard": false
+        }
+    },
+    {
+        "transactionType": "Retail",
+        "transactionAmount": 4068,
+        "customerProfile": {
+            "segment": "Student",
+            "hasInstallmentCard": true
+        }
+    },
+    {
+        "transactionType": "Retail",
+        "transactionAmount": 728,
+        "customerProfile": {
+            "segment": "Gold",
+            "hasInstallmentCard": false
+        }
+    },
+    {
+        "transactionType": "Dining",
+        "transactionAmount": 1304,
+        "customerProfile": {
+            "segment": "Diamond",
+            "hasInstallmentCard": true
+        }
+    },
+    {
+        "transactionType": "Luxury",
+        "transactionAmount": 1746,
+        "customerProfile": {
+            "segment": "Gold",
+            "hasInstallmentCard": true
+        }
+    },
+    {
+        "transactionType": "None",
+        "transactionAmount": 1566,
+        "customerProfile": {
+            "segment": "Student",
+            "hasInstallmentCard": false
+        }
+    },
+    {
+        "transactionType": "Luxury",
+        "transactionAmount": 4313,
+        "customerProfile": {
+            "segment": "Student",
+            "hasInstallmentCard": false
+        }
+    },
+    {
+        "transactionType": "None",
+        "transactionAmount": 3265,
+        "customerProfile": {
+            "segment": "Student",
+            "hasInstallmentCard": false
+        }
+    },
+    {
+        "transactionType": "Dining",
+        "transactionAmount": 3077,
+        "customerProfile": {
+            "segment": "Gold",
+            "hasInstallmentCard": false
+        }
+    },
+    {
+        "transactionType": "Luxury",
+        "transactionAmount": 833,
+        "customerProfile": {
+            "segment": "Silver",
+            "hasInstallmentCard": true
+        }
+    },
+    {
+        "transactionType": "Dining",
+        "transactionAmount": 950,
+        "customerProfile": {
+            "segment": "Diamond",
+            "hasInstallmentCard": false
+        }
+    },
+    {
+        "transactionType": "Luxury",
+        "transactionAmount": 644,
+        "customerProfile": {
+            "segment": "Student",
+            "hasInstallmentCard": false
+        }
+    },
+    {
+        "transactionType": "Retail",
+        "transactionAmount": 187,
+        "customerProfile": {
+            "segment": "Diamond",
+            "hasInstallmentCard": true
+        }
+    },
+    {
+        "transactionType": "None",
+        "transactionAmount": 1425,
+        "customerProfile": {
+            "segment": "Diamond",
+            "hasInstallmentCard": true
+        }
+    },
+    {
+        "transactionType": "Dining",
+        "transactionAmount": 1489,
+        "customerProfile": {
+            "segment": "Gold",
+            "hasInstallmentCard": true
+        }
+    },
+    {
+        "transactionType": "Luxury",
+        "transactionAmount": 3922,
+        "customerProfile": {
+            "segment": "Gold",
+            "hasInstallmentCard": false
+        }
+    },
+    {
+        "transactionType": "Retail",
+        "transactionAmount": 4762,
+        "customerProfile": {
+            "segment": "Gold",
+            "hasInstallmentCard": true
+        }
+    },
+    {
+        "transactionType": "Luxury",
+        "transactionAmount": 3319,
+        "customerProfile": {
+            "segment": "Student",
+            "hasInstallmentCard": false
+        }
+    },
+    {
+        "transactionType": "Luxury",
+        "transactionAmount": 3093,
+        "customerProfile": {
+            "segment": "Silver",
+            "hasInstallmentCard": false
+        }
+    },
+    {
+        "transactionType": "Dining",
+        "transactionAmount": 276,
+        "customerProfile": {
+            "segment": "Gold",
+            "hasInstallmentCard": true
+        }
+    },
+    {
+        "transactionType": "Retail",
+        "transactionAmount": 4761,
+        "customerProfile": {
+            "segment": "Student",
+            "hasInstallmentCard": true
+        }
+    },
+    {
+        "transactionType": "Dining",
+        "transactionAmount": 1867,
+        "customerProfile": {
+            "segment": "Student",
+            "hasInstallmentCard": true
+        }
+    },
+    {
+        "transactionType": "None",
+        "transactionAmount": 1606,
+        "customerProfile": {
+            "segment": "Student",
+            "hasInstallmentCard": true
+        }
+    },
+    {
+        "transactionType": "None",
+        "transactionAmount": 514,
+        "customerProfile": {
+            "segment": "Gold",
+            "hasInstallmentCard": true
+        }
+    },
+    {
+        "transactionType": "Dining",
+        "transactionAmount": 544,
+        "customerProfile": {
+            "segment": "Diamond",
+            "hasInstallmentCard": true
+        }
+    },
+    {
+        "transactionType": "Retail",
+        "transactionAmount": 1349,
+        "customerProfile": {
+            "segment": "Silver",
+            "hasInstallmentCard": true
+        }
+    },
+    {
+        "transactionType": "Retail",
+        "transactionAmount": 2138,
+        "customerProfile": {
+            "segment": "Silver",
+            "hasInstallmentCard": true
+        }
+    },
+    {
+        "transactionType": "Dining",
+        "transactionAmount": 4629,
+        "customerProfile": {
+            "segment": "Diamond",
+            "hasInstallmentCard": false
+        }
+    },
+    {
+        "transactionType": "Dining",
+        "transactionAmount": 583,
+        "customerProfile": {
+            "segment": "Student",
+            "hasInstallmentCard": true
+        }
+    },
+    {
+        "transactionType": "None",
+        "transactionAmount": 1941,
+        "customerProfile": {
+            "segment": "Diamond",
+            "hasInstallmentCard": false
+        }
+    },
+    {
+        "transactionType": "None",
+        "transactionAmount": 3031,
+        "customerProfile": {
+            "segment": "Gold",
+            "hasInstallmentCard": false
+        }
+    }
+]

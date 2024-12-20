@@ -1,0 +1,200 @@
+{
+  "businessRules": [
+    {
+      "ruleName": "Recommend Installment Card for Gold Customers",
+      "triggerEvent": "CreditCardTransaction",
+      "conditions": {
+        "transactionType": "Electronics",
+        "transactionAmount": {
+          "operator": ">=",
+          "value": 1000
+        },
+        "customerProfile": {
+          "segment": "Gold",
+          "hasInstallmentCard": false
+        }
+      },
+      "action": {
+        "type": "Recommendation",
+        "message": "Apply for our installment card for flexible payments!",
+        "recommendationType": "InstallmentCard"
+      }
+    },
+    {
+      "ruleName": "Offer Cashback for Silver Customers",
+      "triggerEvent": "OnlineTransaction",
+      "conditions": {
+        "transactionType": "Retail",
+        "transactionAmount": {
+          "operator": ">=",
+          "value": 300
+        },
+        "customerProfile": {
+          "segment": "Silver",
+          "hasInstallmentCard": true
+        }
+      },
+      "action": {
+        "type": "Recommendation",
+        "message": "Get cashback rewards on your purchases!",
+        "recommendationType": "Cashback"
+      }
+    },
+    {
+      "ruleName": "Promote Premium Card for Platinum Customers",
+      "triggerEvent": "CreditCardTransaction",
+      "conditions": {
+        "transactionType": "Travel",
+        "transactionAmount": {
+          "operator": ">=",
+          "value": 2000
+        },
+        "customerProfile": {
+          "segment": "Platinum",
+          "hasInstallmentCard": false
+        }
+      },
+      "action": {
+        "type": "Recommendation",
+        "message": "Upgrade to our premium card for exclusive travel benefits!",
+        "recommendationType": "PremiumCard"
+      }
+    },
+    {
+      "ruleName": "Exclusive Offer for Diamond Customers",
+      "triggerEvent": "CreditCardTransaction",
+      "conditions": {
+        "transactionType": "Luxury",
+        "transactionAmount": {
+          "operator": ">=",
+          "value": 5000
+        },
+        "customerProfile": {
+          "segment": "Diamond",
+          "hasInstallmentCard": false
+        }
+      },
+      "action": {
+        "type": "Recommendation",
+        "message": "Get exclusive offers with our luxury installment card!",
+        "recommendationType": "LuxuryCard"
+      }
+    },
+    {
+      "ruleName": "Discount Offer for Gold Customers",
+      "triggerEvent": "CreditCardTransaction",
+      "conditions": {
+        "transactionType": "Supermarket",
+        "transactionAmount": {
+          "operator": ">=",
+          "value": 500
+        },
+        "customerProfile": {
+          "segment": "Gold",
+          "hasInstallmentCard": true
+        }
+      },
+      "action": {
+        "type": "Recommendation",
+        "message": "Enjoy discounts on your next supermarket purchase!",
+        "recommendationType": "DiscountCard"
+      }
+    },
+    {
+      "ruleName": "Travel Insurance for Silver Customers",
+      "triggerEvent": "CreditCardTransaction",
+      "conditions": {
+        "transactionType": "Travel",
+        "transactionAmount": {
+          "operator": ">=",
+          "value": 1500
+        },
+        "customerProfile": {
+          "segment": "Silver",
+          "hasInstallmentCard": true
+        }
+      },
+      "action": {
+        "type": "Recommendation",
+        "message": "Get travel insurance for your trip at a discounted rate!",
+        "recommendationType": "TravelInsurance"
+      }
+    },
+    {
+      "ruleName": "Exclusive Dining Deals for Gold Customers",
+      "triggerEvent": "CreditCardTransaction",
+      "conditions": {
+        "transactionType": "Dining",
+        "transactionAmount": {
+          "operator": ">=",
+          "value": 300
+        },
+        "customerProfile": {
+          "segment": "Gold",
+          "hasInstallmentCard": false
+        }
+      },
+      "action": {
+        "type": "Recommendation",
+        "message": "Enjoy exclusive dining deals with our Gold Card benefits!",
+        "recommendationType": "DiningCard"
+      }
+    },
+    {
+      "ruleName": "Upgrade Alert for Silver Customers",
+      "triggerEvent": "CreditCardTransaction",
+      "conditions": {
+        "transactionType": "Luxury",
+        "transactionAmount": {
+          "operator": ">=",
+          "value": 2500
+        },
+        "customerProfile": {
+          "segment": "Silver",
+          "hasInstallmentCard": false
+        }
+      },
+      "action": {
+        "type": "Recommendation",
+        "message": "Upgrade to Gold for access to luxury benefits!",
+        "recommendationType": "UpgradeCard"
+      }
+    },
+    {
+      "ruleName": "Retail Discount for Diamond Customers",
+      "triggerEvent": "CreditCardTransaction",
+      "conditions": {
+        "transactionType": "Retail",
+        "transactionAmount": {
+          "operator": ">=",
+          "value": 1000
+        },
+        "customerProfile": {
+          "segment": "Diamond",
+          "hasInstallmentCard": true
+        }
+      },
+      "action": {
+        "type": "Recommendation",
+        "message": "Shop smarter with exclusive retail discounts!",
+        "recommendationType": "RetailCard"
+      }
+    },
+    {
+      "ruleName": "Student Offer for New Customers",
+      "triggerEvent": "AccountOpening",
+      "conditions": {
+        "transactionType": "None",
+        "customerProfile": {
+          "segment": "Student",
+          "hasInstallmentCard": false
+        }
+      },
+      "action": {
+        "type": "Recommendation",
+        "message": "Sign up for a student card with zero annual fees!",
+        "recommendationType": "StudentCard"
+      }
+    }
+  ]
+}
