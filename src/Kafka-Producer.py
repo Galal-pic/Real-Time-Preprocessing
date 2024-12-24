@@ -5,7 +5,7 @@ from .fraud_data_generator import TransactionsData_json, send_orders
 def main():
     # load_dataset
     topic_name = "t1"
-    file_path = r"dataset\Transactions.json"
+    file_path = r"dataset\Transactions2.json"
     fraudulent_dataset_generator = TransactionsData_json(file_path=file_path)
     producer = get_kafka_producer()
 
