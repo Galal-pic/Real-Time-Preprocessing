@@ -26,5 +26,5 @@ def consume_messages(topic_name, group_id=None):
 
 
 if __name__ == "__main__":
-    topic_name = "Luxury"
+    topic_name = "t1"
     consume_messages(topic_name)

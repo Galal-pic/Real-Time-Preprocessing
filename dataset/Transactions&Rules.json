@@ -3,17 +3,34 @@
     {
       "ruleName": "Recommend Installment Card for Gold Customers",
       "triggerEvent": "CreditCardTransaction",
-      "conditions": {
-        "transactionType": "Electronics",
-        "transactionAmount": {
-          "operator": ">=",
-          "value": 1000
+      "conditions": [
+        {
+          "Category": {
+            "operator": "==",
+            "value": "Galal"
+          }
         },
-        "customerProfile": {
-          "segment": "Gold",
-          "hasInstallmentCard": false
+        {
+          "Amount": {
+            "operator": ">=",
+            "value": 100
+          }
         }
-      },
+      ],
+      "customerProfile": [
+        {
+          "segment": {
+            "operator": "==",
+            "value": "Gold"
+          }
+        },
+        {
+          "hasInstallmentCard": {
+            "operator": "==",
+            "value": true
+          }
+        }
+      ],
       "action": {
         "type": "Recommendation",
         "message": "Apply for our installment card for flexible payments!",
@@ -23,17 +40,34 @@
     {
       "ruleName": "Offer Cashback for Silver Customers",
       "triggerEvent": "OnlineTransaction",
-      "conditions": {
-        "transactionType": "Retail",
-        "transactionAmount": {
-          "operator": ">=",
-          "value": 300
+      "conditions": [
+        {
+          "Category": {
+            "operator": "==",
+            "value": "Grocery Stores and Supermarkets"
+          }
         },
-        "customerProfile": {
-          "segment": "Silver",
-          "hasInstallmentCard": true
+        {
+          "Amount": {
+            "operator": ">=",
+            "value": 10
+          }
         }
-      },
+      ],
+      "customerProfile": [
+        {
+          "segment": {
+            "operator": "==",
+            "value": "Silver"
+          }
+        },
+        {
+          "hasInstallmentCard": {
+            "operator": "==",
+            "value": true
+          }
+        }
+      ],
       "action": {
         "type": "Recommendation",
         "message": "Get cashback rewards on your purchases!",
@@ -43,17 +77,34 @@
     {
       "ruleName": "Promote Premium Card for Platinum Customers",
       "triggerEvent": "CreditCardTransaction",
-      "conditions": {
-        "transactionType": "Travel",
-        "transactionAmount": {
-          "operator": ">=",
-          "value": 2000
+      "conditions": [
+        {
+          "Category": {
+            "operator": "==",
+            "value": "mohamed"
+          }
         },
-        "customerProfile": {
-          "segment": "Platinum",
-          "hasInstallmentCard": false
+        {
+          "Amount": {
+            "operator": "<",
+            "value": 2000
+          }
         }
-      },
+      ],
+      "customerProfile": [
+        {
+          "segment": {
+            "operator": "==",
+            "value": "Manga"
+          }
+        },
+        {
+          "hasInstallmentCard": {
+            "operator": "==",
+            "value": false
+          }
+        }
+      ],
       "action": {
         "type": "Recommendation",
         "message": "Upgrade to our premium card for exclusive travel benefits!",
@@ -63,17 +114,34 @@
     {
       "ruleName": "Exclusive Offer for Diamond Customers",
       "triggerEvent": "CreditCardTransaction",
-      "conditions": {
-        "transactionType": "Luxury",
-        "transactionAmount": {
-          "operator": ">=",
-          "value": 5000
+      "conditions": [
+        {
+          "Category": {
+            "operator": "==",
+            "value": "Luxury"
+          }
         },
-        "customerProfile": {
-          "segment": "Diamond",
-          "hasInstallmentCard": false
+        {
+          "Amount": {
+            "operator": ">=",
+            "value": 5000
+          }
         }
-      },
+      ],
+      "customerProfile": [
+        {
+          "segment": {
+            "operator": "==",
+            "value": "Diamond"
+          }
+        },
+        {
+          "hasInstallmentCard": {
+            "operator": "==",
+            "value": false
+          }
+        }
+      ],
       "action": {
         "type": "Recommendation",
         "message": "Get exclusive offers with our luxury installment card!",
@@ -83,17 +151,34 @@
     {
       "ruleName": "Discount Offer for Gold Customers",
       "triggerEvent": "CreditCardTransaction",
-      "conditions": {
-        "transactionType": "Supermarket",
-        "transactionAmount": {
-          "operator": ">=",
-          "value": 500
+      "conditions": [
+        {
+          "Category": {
+            "operator": "==",
+            "value": "Supermarket"
+          }
         },
-        "customerProfile": {
-          "segment": "Gold",
-          "hasInstallmentCard": true
+        {
+          "Amount": {
+            "operator": ">=",
+            "value": 500
+          }
         }
-      },
+      ],
+      "customerProfile": [
+        {
+          "segment": {
+            "operator": "==",
+            "value": "Gold"
+          }
+        },
+        {
+          "hasInstallmentCard": {
+            "operator": "==",
+            "value": true
+          }
+        }
+      ],
       "action": {
         "type": "Recommendation",
         "message": "Enjoy discounts on your next supermarket purchase!",
@@ -103,17 +188,34 @@
     {
       "ruleName": "Travel Insurance for Silver Customers",
       "triggerEvent": "CreditCardTransaction",
-      "conditions": {
-        "transactionType": "Travel",
-        "transactionAmount": {
-          "operator": ">=",
-          "value": 1500
+      "conditions": [
+        {
+          "Category": {
+            "operator": "==",
+            "value": "Travel"
+          }
         },
-        "customerProfile": {
-          "segment": "Silver",
-          "hasInstallmentCard": true
+        {
+          "Amount": {
+            "operator": ">=",
+            "value": 1500
+          }
         }
-      },
+      ],
+      "customerProfile": [
+        {
+          "segment": {
+            "operator": "==",
+            "value": "Silver"
+          }
+        },
+        {
+          "hasInstallmentCard": {
+            "operator": "==",
+            "value": true
+          }
+        }
+      ],
       "action": {
         "type": "Recommendation",
         "message": "Get travel insurance for your trip at a discounted rate!",
@@ -123,17 +225,34 @@
     {
       "ruleName": "Exclusive Dining Deals for Gold Customers",
       "triggerEvent": "CreditCardTransaction",
-      "conditions": {
-        "transactionType": "Dining",
-        "transactionAmount": {
-          "operator": ">=",
-          "value": 300
+      "conditions": [
+        {
+          "Category": {
+            "operator": "==",
+            "value": "Dining"
+          }
         },
-        "customerProfile": {
-          "segment": "Gold",
-          "hasInstallmentCard": false
+        {
+          "Amount": {
+            "operator": ">=",
+            "value": 300
+          }
         }
-      },
+      ],
+      "customerProfile": [
+        {
+          "segment": {
+            "operator": "==",
+            "value": "Gold"
+          }
+        },
+        {
+          "hasInstallmentCard": {
+            "operator": "==",
+            "value": false
+          }
+        }
+      ],
       "action": {
         "type": "Recommendation",
         "message": "Enjoy exclusive dining deals with our Gold Card benefits!",
@@ -143,17 +262,34 @@
     {
       "ruleName": "Upgrade Alert for Silver Customers",
       "triggerEvent": "CreditCardTransaction",
-      "conditions": {
-        "transactionType": "Luxury",
-        "transactionAmount": {
-          "operator": ">=",
-          "value": 2500
+      "conditions": [
+        {
+          "Category": {
+            "operator": "==",
+            "value": "Luxury"
+          }
         },
-        "customerProfile": {
-          "segment": "Silver",
-          "hasInstallmentCard": false
+        {
+          "Amount": {
+            "operator": ">=",
+            "value": 2500
+          }
         }
-      },
+      ],
+      "customerProfile": [
+        {
+          "segment": {
+            "operator": "==",
+            "value": "Silver"
+          }
+        },
+        {
+          "hasInstallmentCard": {
+            "operator": "==",
+            "value": false
+          }
+        }
+      ],
       "action": {
         "type": "Recommendation",
         "message": "Upgrade to Gold for access to luxury benefits!",
@@ -163,17 +299,34 @@
     {
       "ruleName": "Retail Discount for Diamond Customers",
       "triggerEvent": "CreditCardTransaction",
-      "conditions": {
-        "transactionType": "Retail",
-        "transactionAmount": {
-          "operator": ">=",
-          "value": 1000
+      "conditions": [
+        {
+          "Category": {
+            "operator": "==",
+            "value": "Retail"
+          }
         },
-        "customerProfile": {
-          "segment": "Diamond",
-          "hasInstallmentCard": true
+        {
+          "Amount": {
+            "operator": ">=",
+            "value": 1000
+          }
         }
-      },
+      ],
+      "customerProfile": [
+        {
+          "segment": {
+            "operator": "==",
+            "value": "Diamond"
+          }
+        },
+        {
+          "hasInstallmentCard": {
+            "operator": "==",
+            "value": true
+          }
+        }
+      ],
       "action": {
         "type": "Recommendation",
         "message": "Shop smarter with exclusive retail discounts!",
@@ -183,13 +336,28 @@
     {
       "ruleName": "Student Offer for New Customers",
       "triggerEvent": "AccountOpening",
-      "conditions": {
-        "transactionType": "None",
-        "customerProfile": {
-          "segment": "Student",
-          "hasInstallmentCard": false
+      "conditions": [
+        {
+          "Category": {
+            "operator": "==",
+            "value": "None"
+          }
         }
-      },
+      ],
+      "customerProfile": [
+        {
+          "segment": {
+            "operator": "==",
+            "value": "Student"
+          }
+        },
+        {
+          "hasInstallmentCard": {
+            "operator": "==",
+            "value": false
+          }
+        }
+      ],
       "action": {
         "type": "Recommendation",
         "message": "Sign up for a student card with zero annual fees!",
