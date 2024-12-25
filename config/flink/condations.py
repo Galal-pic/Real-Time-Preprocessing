@@ -22,11 +22,10 @@ def _check_numbers(self, operator, value, transaction):
 
 def _check_category(self, operator, value, transaction, condation_name):
     """Evaluate a category condition on the transaction MCC code."""
-    if condation_name == "category":
-        if operator == "==":
-            return transaction["category"] == value
-    elif condation_name == "Segment":
-        if operator == "==":
+    if operator == "==":
+        if condation_name == "Category":
+            return transaction["Category"] == value
+        elif condation_name == "Segment":
             return transaction["Segment"] == value
 
 

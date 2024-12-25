@@ -19,7 +19,7 @@
       ],
       "customerProfile": [
         {
-          "segment": {
+          "Segment": {
             "operator": "==",
             "value": "Gold"
           }
@@ -56,7 +56,7 @@
       ],
       "customerProfile": [
         {
-          "segment": {
+          "Segment": {
             "operator": "==",
             "value": "Silver"
           }
@@ -93,7 +93,7 @@
       ],
       "customerProfile": [
         {
-          "segment": {
+          "Segment": {
             "operator": "==",
             "value": "Manga"
           }
@@ -130,7 +130,7 @@
       ],
       "customerProfile": [
         {
-          "segment": {
+          "Segment": {
             "operator": "==",
             "value": "Diamond"
           }
@@ -167,7 +167,7 @@
       ],
       "customerProfile": [
         {
-          "segment": {
+          "Segment": {
             "operator": "==",
             "value": "Gold"
           }
@@ -204,7 +204,7 @@
       ],
       "customerProfile": [
         {
-          "segment": {
+          "Segment": {
             "operator": "==",
             "value": "Silver"
           }
@@ -241,7 +241,7 @@
       ],
       "customerProfile": [
         {
-          "segment": {
+          "Segment": {
             "operator": "==",
             "value": "Gold"
           }
@@ -278,7 +278,7 @@
       ],
       "customerProfile": [
         {
-          "segment": {
+          "Segment": {
             "operator": "==",
             "value": "Silver"
           }
@@ -315,7 +315,7 @@
       ],
       "customerProfile": [
         {
-          "segment": {
+          "Segment": {
             "operator": "==",
             "value": "Diamond"
           }
@@ -346,7 +346,7 @@
       ],
       "customerProfile": [
         {
-          "segment": {
+          "Segment": {
             "operator": "==",
             "value": "Student"
           }

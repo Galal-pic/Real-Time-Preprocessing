@@ -45,10 +45,18 @@ class BusinessRulesParser(MapFunction):
             print(f"Error in _check_numbers: {e}")
             return False
 
-    def _check_category(self, operator, value, transaction):
+    def _check_category(self, operator, value, transaction, condation_name):
         """Evaluate a category condition on the transaction MCC code."""
         if operator == "==":
-            return transaction["Category"] == value
+            if condation_name == "Category":
+                return transaction["Category"] == value
+            elif condation_name == "Segment":
+                return transaction["Segment"] == value
+
+    def _check_status(self, operator, value, transaction):
+        """Evaluate a category condition on the transaction MCC code."""
+        if operator == "==":
+            return bool(transaction["hasInstallmentCard"]) == value
 
     def map(self, value):
         """Process incoming transaction data against business rules."""
@@ -135,14 +143,32 @@ class BusinessRulesParser(MapFunction):
                         condition["Category"]["operator"],
                         condition["Category"]["value"],
                         transaction,
+                        "Category",
                     ):
                         return False
 
-            # Evaluate customer profile conditions
-            # customer_profile = transaction.get("customerProfile", {})
-            # for key, value in customer_profile_conditions.items():
-            #     if customer_profile.get(key) != value:
-            #         return False
+            for CP_condation in customer_profile_conditions:
+                if CP_condation.get("Segment", "") != "":
+                    # print(
+                    #     f"segment = operator - > {CP_condation['segment']['operator']} , value - > {CP_condation['segment']['value']}"
+                    # )
+                    if not self._check_category(
+                        CP_condation["Segment"]["operator"],
+                        CP_condation["Segment"]["value"],
+                        transaction,
+                        "Segment",
+                    ):
+                        return False
+                else:
+                    # print(
+                    #     f"hasInstallmentCard = operator - > {CP_condation['hasInstallmentCard']['operator']} , value - > {CP_condation['hasInstallmentCard']['value']}"
+                    # )
+                    if not self._check_status(
+                        CP_condation["hasInstallmentCard"]["operator"],
+                        CP_condation["hasInstallmentCard"]["value"],
+                        transaction,
+                    ):
+                        return False
 
             return True
         except Exception as e:
