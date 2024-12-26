@@ -24,11 +24,9 @@ class BusinessRulesParser(MapFunction):
             print(f"Error loading business rules: {e}")
             return []
 
-    def _check_numbers(self, operator, value, transaction):
+    def _check_numbers(self, operator, value, transaction_float):
         """Evaluate a numeric condition on the transaction amount."""
         try:
-            transaction_float = float(transaction["Amount"][1:])
-
             if operator == ">":
                 return transaction_float > value
             elif operator == "<":
@@ -45,38 +43,36 @@ class BusinessRulesParser(MapFunction):
             print(f"Error in _check_numbers: {e}")
             return False
 
-    def _check_category(self, operator, value, transaction, condation_name):
+    def _check_string(self, operator, value, transaction):
         """Evaluate a category condition on the transaction MCC code."""
         if operator == "==":
-            if condation_name == "Category":
-                return transaction["Category"] == value
-            elif condation_name == "Segment":
-                return transaction["Segment"] == value
+            return value == transaction
 
-    def _check_status(self, operator, value, transaction):
+    def _check_bool(self, operator, value, transaction):
         """Evaluate a category condition on the transaction MCC code."""
         if operator == "==":
-            return bool(transaction["hasInstallmentCard"]) == value
+            return transaction == value
 
     def map(self, value):
         """Process incoming transaction data against business rules."""
         try:
             value = value.strip()
             if not value:
-                return "Error: Empty input"
+                return [("Error", "Empty input")]
 
             # Parse JSON input
             try:
                 test_cases = json.loads(value)
             except json.JSONDecodeError as e:
-                print(f"JSON parsing error: {e}")
-                return f"Error: Invalid JSON format - {str(e)}"
+                return [("Error", f"Invalid JSON format - {str(e)}")]
 
             # Ensure test_cases is a list
             if isinstance(test_cases, dict):
                 test_cases = [test_cases]
             elif not isinstance(test_cases, list):
-                return "Error: Invalid input format - expected JSON object or array"
+                return [
+                    ("Error", "Invalid input format - expected JSON object or array")
+                ]
 
             action_messages = []
             for test_case in test_cases:
@@ -104,8 +100,7 @@ class BusinessRulesParser(MapFunction):
             )
 
         except Exception as e:
-            print(f"Unexpected error: {str(e)}")
-            return f"Error: {str(e)}"
+            return [("Error", f"Unexpected error: {str(e)}")]
 
     def _enrich_transaction(self, transaction):
         """Enrich the transaction with MCC data."""
@@ -124,51 +119,59 @@ class BusinessRulesParser(MapFunction):
         try:
             # Evaluate conditions
             for condition in conditions:
-                if condition.get("Amount", "") != "":
-                    # print(
-                    #     f"Amount = operator - > {condition['Amount']['operator']} , value - > {condition['Amount']['value']}"
-                    # )
-
-                    if not self._check_numbers(
-                        condition["Amount"]["operator"],
-                        condition["Amount"]["value"],
-                        transaction,
-                    ):
-                        return False
-                else:
-                    # print(
-                    #     f"category = operator - > {condition['Category']['operator']} , value - > {condition['Category']['value']}"
-                    # )
-                    if not self._check_category(
-                        condition["Category"]["operator"],
-                        condition["Category"]["value"],
-                        transaction,
-                        "Category",
-                    ):
-                        return False
+                for key, rule in condition.items():
+                    # IF integer value
+                    if isinstance(rule["value"], int):
+                        if not self._check_numbers(
+                            rule["operator"],
+                            rule["value"],
+                            transaction[key],
+                        ):
+                            return False
+                    # Else string
+                    elif isinstance(rule["value"], str):
+                        if not self._check_string(
+                            rule["operator"],
+                            rule["value"],
+                            transaction[key],
+                        ):
+                            return False
+                    else:
+                        if isinstance(rule["value"], bool):
+                            if not self._check_bool(
+                                rule["operator"],
+                                rule["value"],
+                                bool(transaction[key]),
+                            ):
+                                return False
 
             for CP_condation in customer_profile_conditions:
-                if CP_condation.get("Segment", "") != "":
+                for key, rule in CP_condation.items():
                     # print(
-                    #     f"segment = operator - > {CP_condation['segment']['operator']} , value - > {CP_condation['segment']['value']}"
+                    #     f"{key} = operator - > {rule['operator']} , value - > {rule['value']}"
                     # )
-                    if not self._check_category(
-                        CP_condation["Segment"]["operator"],
-                        CP_condation["Segment"]["value"],
-                        transaction,
-                        "Segment",
-                    ):
-                        return False
-                else:
-                    # print(
-                    #     f"hasInstallmentCard = operator - > {CP_condation['hasInstallmentCard']['operator']} , value - > {CP_condation['hasInstallmentCard']['value']}"
-                    # )
-                    if not self._check_status(
-                        CP_condation["hasInstallmentCard"]["operator"],
-                        CP_condation["hasInstallmentCard"]["value"],
-                        transaction,
-                    ):
-                        return False
+                    if isinstance(rule["value"], str):
+                        if not self._check_string(
+                            rule["operator"],
+                            rule["value"],
+                            transaction[key],
+                        ):
+                            return False
+                    elif isinstance(rule["value"], int):
+                        if not self._check_numbers(
+                            rule["operator"],
+                            rule["value"],
+                            transaction[key],
+                        ):
+                            return False
+                    else:
+                        if isinstance(rule["value"], bool):
+                            if not self._check_bool(
+                                rule["operator"],
+                                rule["value"],
+                                transaction[key],
+                            ):
+                                return False
 
             return True
         except Exception as e:
