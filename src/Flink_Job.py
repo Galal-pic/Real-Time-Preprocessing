@@ -1,3 +1,4 @@
+import argparse
 from pyflink.datastream import StreamExecutionEnvironment
 from pyflink.common.typeinfo import Types
 from pyflink.datastream.data_stream import WatermarkStrategy
@@ -25,9 +26,8 @@ def kafka_job(source_topic):
 
     # Apply the BusinessRulesParser
     parsed_stream = input_stream.map(
-        BusinessRulesParser(),
+        BusinessRulesParser(source_topic),
         output_type=Types.LIST(Types.TUPLE([Types.STRING(), Types.STRING()])),
-        # output_type=Types.STRING(),
     )
 
     parsed_stream = parsed_stream.map(
@@ -37,13 +37,21 @@ def kafka_job(source_topic):
     parsed_stream.print()
 
     # Add a dynamic Kafka sink
-    parsed_stream.sink_to(Sink())
+    # parsed_stream.sink_to(Sink())
 
-    # # Execute the job
+    # Execute the job
     env.execute(f"Kafka Job - Reading from {source_topic}")
 
 
 if __name__ == "__main__":
-    source = "t1"
-    # destination = "t5"
-    kafka_job(source_topic=source)
+    # Parse command-line arguments
+    parser = argparse.ArgumentParser(description="Run a PyFlink Kafka job.")
+    parser.add_argument(
+        "--source_topic",
+        required=True,
+        help="The name of the Kafka source topic to read messages from.",
+    )
+    args = parser.parse_args()
+
+    # Run the Kafka job with the provided source topic
+    kafka_job(source_topic=args.source_topic)

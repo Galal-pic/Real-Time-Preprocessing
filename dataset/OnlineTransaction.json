@@ -31,10 +31,10 @@
     "Merchant City": "Monterey Park",
     "Merchant State": "CA",
     "Zip": 91754.0,
-    "MCC": 5411,
+    "MCC": 5300,
     "Errors?": null,
     "Is Fraud?": "No",
-    "Segment": "Diamond",
+    "Segment": "Gold",
     "hasInstallmentCard": 0
   },
   {

@@ -9,9 +9,11 @@ mcc_df = pd.read_csv("dataset/mcc_codes.csv")
 
 
 class BusinessRulesParser(MapFunction):
-    def __init__(self, rules_file_path="dataset/Transactions&Rules.json"):
+
+    def __init__(self, source_topic, rules_file_path="dataset/Rules.json"):
         self.rules_file_path = rules_file_path
         self.business_rules = self._load_business_rules()
+        self.source_topic = source_topic
 
     def _load_business_rules(self):
         """Load business rules from the JSON file."""
@@ -77,15 +79,22 @@ class BusinessRulesParser(MapFunction):
             action_messages = []
             for test_case in test_cases:
                 test_case = self._enrich_transaction(test_case)
+                # print(test_case)
 
                 for business_rule in self.business_rules:
+                    # print(business_rule)
+
                     conditions = business_rule.get("conditions", [])
                     customer_profile_conditions = business_rule.get(
                         "customerProfile", []
                     )
+                    tragged_conditions = business_rule.get("triggerEvent")
 
                     if self._check_conditions(
-                        test_case, conditions, customer_profile_conditions
+                        test_case,
+                        conditions,
+                        customer_profile_conditions,
+                        tragged_conditions,
                     ):
                         action = business_rule.get("action", {})
                         action_message = action.get("message", "")
@@ -114,9 +123,13 @@ class BusinessRulesParser(MapFunction):
             print(f"Error enriching transaction: {e}")
             return transaction
 
-    def _check_conditions(self, transaction, conditions, customer_profile_conditions):
+    def _check_conditions(
+        self, transaction, conditions, customer_profile_conditions, tragged_conditions
+    ):
         """Check if the transaction meets the conditions."""
         try:
+            if tragged_conditions != self.source_topic:
+                return False
             # Evaluate conditions
             for condition in conditions:
                 for key, rule in condition.items():

@@ -7,7 +7,7 @@
         {
           "Category": {
             "operator": "==",
-            "value": "Galal"
+            "value": "Grocery Stores and Supermarkets"
           }
         },
         {
@@ -44,7 +44,7 @@
         {
           "Category": {
             "operator": "==",
-            "value": "Grocery Stores and Supermarkets"
+            "value": "Galal"
           }
         },
         {
@@ -58,7 +58,7 @@
         {
           "Segment": {
             "operator": "==",
-            "value": "Silver"
+            "value": "Gold"
           }
         },
         {
