@@ -41,6 +41,7 @@ This project is a real-time system that uses **Apache Kafka** for data streaming
 
 ## **Project Structure**
 
+```bash
 project/
 ├── config/
 │ ├── init.py
@@ -72,6 +73,7 @@ project/
 │ ├── init.py
 │ └── fraud_data_generator.py
 └── README.md
+```
 
 ---
 
