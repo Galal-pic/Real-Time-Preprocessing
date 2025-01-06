@@ -1,5 +1,5 @@
-# producer.py
 from kafka import KafkaProducer
+from typing import Optional
 import json
 import logging
 from .kafka_config import KAFKA_SERVER
@@ -9,7 +9,7 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 
-def get_kafka_producer():
+def get_kafka_producer() -> Optional[KafkaProducer]:
     try:
         producer = KafkaProducer(
             bootstrap_servers=KAFKA_SERVER,

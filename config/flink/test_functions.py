@@ -1,7 +1,12 @@
-import json
+import logging
+from typing import Dict, Any
+
+# Configure logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 
-def _check_numbers(operator, value, transaction_float):
+def _check_numbers(operator: str, value: int, transaction_float: float) -> bool:
     """Evaluate a numeric condition on the transaction amount."""
     try:
         if operator == ">":
@@ -17,90 +22,69 @@ def _check_numbers(operator, value, transaction_float):
         else:
             return False
     except Exception as e:
-        print(f"Error in _check_numbers: {e}")
+        logger.error(f"Error in _check_numbers: {e}")
         return False
 
 
-def _check_string(operator, value, transaction):
+def _check_string(operator: str, value: str, transaction: str) -> bool:
     """Evaluate a string condition."""
-    if operator == "==":
-        return value == transaction
+    return value == transaction if operator == "==" else False
 
 
-def _check_bool(operator, value, transaction):
+def _check_bool(operator: str, value: bool, transaction: bool) -> bool:
     """Evaluate a boolean condition."""
-    if operator == "==":
-        return transaction == value
+    return transaction == value if operator == "==" else False
 
 
 def _check_conditions(
-    transaction,
-    conditions,
-    customer_profile_conditions,
-    tragged_conditions,
-    source_topic,
-):
+    transaction: Dict[str, Any],
+    conditions: list[Dict[str, Any]],
+    customer_profile_conditions: list[Dict[str, Any]],
+    tragged_conditions: str,
+    source_topic: str,
+) -> bool:
     """Check if the transaction meets the conditions."""
     try:
         if tragged_conditions != source_topic:
             return False
-        # Evaluate conditions
+
         for condition in conditions:
             for key, rule in condition.items():
-                # IF integer value
                 if isinstance(rule["value"], int):
                     if not _check_numbers(
-                        rule["operator"],
-                        rule["value"],
-                        float(transaction[key][1:]),
+                        rule["operator"], rule["value"], float(transaction[key][1:])
                     ):
                         return False
-                # Else string
                 elif isinstance(rule["value"], str):
                     if not _check_string(
-                        rule["operator"],
-                        rule["value"],
-                        transaction[key],
+                        rule["operator"], rule["value"], transaction[key]
                     ):
                         return False
-                else:
-                    if isinstance(rule["value"], bool):
-                        if not _check_bool(
-                            rule["operator"],
-                            rule["value"],
-                            bool(transaction[key]),
-                        ):
-                            return False
+                elif isinstance(rule["value"], bool):
+                    if not _check_bool(
+                        rule["operator"], rule["value"], bool(transaction[key])
+                    ):
+                        return False
 
         for CP_condation in customer_profile_conditions:
             for key, rule in CP_condation.items():
-                # print(
-                #     f"{key} = operator - > {rule['operator']} , value - > {rule['value']}"
-                # )
                 if isinstance(rule["value"], str):
                     if not _check_string(
-                        rule["operator"],
-                        rule["value"],
-                        transaction[key],
+                        rule["operator"], rule["value"], transaction[key]
                     ):
                         return False
                 elif isinstance(rule["value"], int):
                     if not _check_numbers(
-                        rule["operator"],
-                        rule["value"],
-                        transaction[key],
+                        rule["operator"], rule["value"], transaction[key]
                     ):
                         return False
-                else:
-                    if isinstance(rule["value"], bool):
-                        if not _check_bool(
-                            rule["operator"],
-                            rule["value"],
-                            transaction[key],
-                        ):
-                            return False
+                elif isinstance(rule["value"], bool):
+                    if not _check_bool(
+                        rule["operator"], rule["value"], transaction[key]
+                    ):
+                        return False
 
         return True
     except Exception as e:
-        print(f"Error in _check_conditions: {e}")
+        logger.error(f"Error in _check_conditions: {e}")
         return False
