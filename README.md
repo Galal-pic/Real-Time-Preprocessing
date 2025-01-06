@@ -1,4 +1,4 @@
-# Real-Time Fraud Detection with Kafka and Flink
+# Real-Time with Kafka and Flink
 
 This project is a real-time system that uses **Apache Kafka** for data streaming and **Apache Flink** for stream processing. It processes transaction data, enriches it with business rules, and detects fraudulent activities in real time.
 
