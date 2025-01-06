@@ -10,7 +10,7 @@ REDIS_PORT = 6379
 get_redis = Redis(host=REDIS_HOST, port=REDIS_PORT)
 
 
-def _enrich_transaction(transaction):
+def _enrich_transaction(transaction, database, column):
     """Enrich the transaction with MCC data."""
     try:
         # convert transaction into DataFrame
@@ -18,6 +18,7 @@ def _enrich_transaction(transaction):
 
         # convert user column from user:0 into user0
         transaction_df["User"] = transaction_df["User"].apply(lambda x: "User" + str(x))
+
         # read data from redis for sepecific user
         customer_profile = get_redis.get(transaction_df["User"].values[0])
         customer_profile = json.loads(customer_profile)
@@ -29,7 +30,7 @@ def _enrich_transaction(transaction):
         transaction_CP = pd.merge(transaction_df, CP_df, on="User", how="left")
 
         enriched_transaction = pd.merge(
-            transaction_CP, mcc_df, on="MCC", how="left"
+            transaction_CP, database, on=column, how="left"
         ).to_dict(orient="records")[0]
 
         # print(enriched_transaction.keys())

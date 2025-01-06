@@ -3,9 +3,6 @@ from pyflink.datastream.functions import MapFunction
 import pandas as pd
 from redis import Redis
 from .test_functions import (
-    _check_bool,
-    _check_numbers,
-    _check_string,
     _check_conditions,
 )
 from .Enrich import _enrich_transaction
@@ -13,10 +10,14 @@ from .Enrich import _enrich_transaction
 
 class BusinessRulesParser(MapFunction):
 
-    def __init__(self, source_topic, rules_file_path="dataset/Rules.json"):
+    def __init__(
+        self, source_topic, database, column, rules_file_path="dataset/Rules.json"
+    ):
         self.rules_file_path = rules_file_path
         self.business_rules = self._load_business_rules()
         self.source_topic = source_topic
+        self.database = database
+        self.column = column
 
     def _load_business_rules(self):
         """Load business rules from the JSON file."""
@@ -52,7 +53,7 @@ class BusinessRulesParser(MapFunction):
 
             action_messages = []
             for test_case in test_cases:
-                test_case = _enrich_transaction(test_case)
+                test_case = _enrich_transaction(test_case, self.database, self.column)
 
                 for business_rule in self.business_rules:
                     # print(business_rule)
